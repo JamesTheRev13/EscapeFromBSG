@@ -33,11 +33,11 @@
   <ItemGroup>
     <!-- Tarkov SHIT -->
     <Reference Include="Assembly-CSharp" HintPath="C:\SPT\EscapeFromTarkov_Data\Managed\Assembly-CSharp.dll" Publicize="true" />
-    <Reference Include="UnityEngine" Version="0.0.0.0" IncludeAssets="compile" >
+    <Reference Include="UnityEngine" Version="0.0.0.0" IncludeAssets="compile">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>C:\SPT\EscapeFromTarkov_Data\Managed\UnityEngine.dll</HintPath>
     </Reference>
-    <Reference Include="UnityEngine.CoreModule" Version="0.0.0.0" IncludeAssets="compile" >
+    <Reference Include="UnityEngine.CoreModule" Version="0.0.0.0" IncludeAssets="compile">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>C:\SPT\EscapeFromTarkov_Data\Managed\UnityEngine.CoreModule.dll</HintPath>
     </Reference>
@@ -64,6 +64,7 @@
     <!-- Mod SHIT -->
     <Reference Include="BepInEx" HintPath="C:\SPT\BepInEx\core\BepInEx.dll" />
     <Reference Include="0Harmony" HintPath="C:\SPT\BepInEx\core\0Harmony.dll" />
+    <Reference Include="EFTApi" HintPath="C:\SPT\BepInEx\plugins\kmyuhkyuk-EFTApi\EFTApi.dll" />
     <!-- SYSTEM -->
     <Reference Include="System" />
     <Reference Include="System.Core" />
@@ -75,8 +76,11 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Patches\PlayerUpdateTickPatch.cs" />
+    <Compile Include="Patches\ApplyDamagePatch.cs" />
     <Compile Include="Plugin.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
