@@ -24,7 +24,7 @@ namespace EscapeFromBSG.Patches
         {
             var player = __instance;
 
-            if (player == null || !player.IsYourPlayer)
+            if (player == null || !player.IsYourPlayer || !Plugin.NoClip.Value)
             {
                 return;
             }
@@ -62,20 +62,20 @@ namespace EscapeFromBSG.Patches
             player.MovementContext.ApplyGravity(ref vect, 0f, false);
         }
 
-        [PatchPostfix]
-        private static void Postfix(Player __instance)
-        {
-            var player = __instance;
+        //[PatchPostfix]
+        //private static void Postfix(Player __instance)
+        //{
+        //    var player = __instance;
 
-            if (player == null || !player.IsYourPlayer)
-            {
-                return;
-            }
+        //    if (player == null || !player.IsYourPlayer)
+        //    {
+        //        return;
+        //    }
 
-            //player.Transform.position = Plugin.PrevPos;
-            //player.Transform.localPosition = Plugin.PrevPos;
+        //    //player.Transform.position = Plugin.PrevPos;
+        //    //player.Transform.localPosition = Plugin.PrevPos;
 
-            Plugin.PluginLogger.LogInfo($"Postfix Player position: {player.Transform.position}");
-        }
+        //    Plugin.PluginLogger.LogInfo($"Postfix Player position: {player.Transform.position}");
+        //}
     }
 }

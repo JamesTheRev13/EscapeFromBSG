@@ -13,14 +13,15 @@ namespace EscapeFromBSG.Patches
         [PatchPrefix]
         private static bool Prefix(ActiveHealthController __instance, ref float damage, DamageInfo damageInfo)
         {
-            if (__instance.Player != null && __instance.Player.IsYourPlayer)
+            if (__instance.Player == null || !__instance.Player.IsYourPlayer || !Plugin.GodMode.Value)
             {
-                Plugin.PluginLogger.LogInfo($"Damage: {damage}, Source: {damageInfo.SourceId}");
-
-                damage = 0f;
-                return false;
+                return true;
             }
-            else return true;
+
+            Plugin.PluginLogger.LogInfo($"Damage: {damage}, Source: {damageInfo.SourceId}");
+
+            damage = 0f;
+            return false;
         }
     }
 }

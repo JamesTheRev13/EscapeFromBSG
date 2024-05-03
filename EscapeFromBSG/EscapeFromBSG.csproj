@@ -76,6 +76,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="ConfigurationManagerAttributes.cs" />
     <Compile Include="Patches\PlayerUpdateTickPatch.cs" />
     <Compile Include="Patches\ApplyDamagePatch.cs" />
     <Compile Include="Plugin.cs" />

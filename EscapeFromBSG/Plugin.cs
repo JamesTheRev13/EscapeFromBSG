@@ -3,8 +3,8 @@
 
 using BepInEx;
 using BepInEx.Logging;
+using BepInEx.Configuration;
 using EscapeFromBSG.Patches;
-using UnityEngine;
 
 namespace EscapeFromBSG
 {
@@ -13,6 +13,10 @@ namespace EscapeFromBSG
     {
         internal static Plugin Instance { get; private set; }
         internal static ManualLogSource PluginLogger { get; private set; }
+
+        public static ConfigEntry<bool> GodMode;
+        public static ConfigEntry<bool> NoClip;
+
         private void Awake()
         {
             PluginLogger = Logger;
@@ -27,10 +31,16 @@ namespace EscapeFromBSG
             Instance = this;
             DontDestroyOnLoad(gameObject);
 
+            BindConfigs();
+
             new ApplyDamagePatch().Enable();
             new PlayerUpdateTickPatch().Enable();
         }
 
-        
+        private void BindConfigs()
+        {
+            GodMode = Config.Bind(new ConfigDefinition("Cheats", "GodMode"), false, new ConfigDescription("Enable God Mode", null, new ConfigurationManagerAttributes { IsAdvanced = false, Order = 1}));
+            NoClip = Config.Bind(new ConfigDefinition("Cheats", "NoClip"), false, new ConfigDescription("Enable NoClip", null, new ConfigurationManagerAttributes { IsAdvanced = false, Order = 2 }));
+        }
     }
 }
