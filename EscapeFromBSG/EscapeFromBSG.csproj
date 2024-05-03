@@ -1,0 +1,82 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{32839C00-48CF-48E4-AB66-B4D990880374}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>EscapeFromBSG</RootNamespace>
+    <AssemblyName>EscapeFromBSG</AssemblyName>
+    <TargetFrameworkVersion>v4.8</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <Deterministic>true</Deterministic>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <!-- Tarkov SHIT -->
+    <Reference Include="Assembly-CSharp" HintPath="C:\SPT\EscapeFromTarkov_Data\Managed\Assembly-CSharp.dll" Publicize="true" />
+    <Reference Include="UnityEngine" Version="0.0.0.0" IncludeAssets="compile" >
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>C:\SPT\EscapeFromTarkov_Data\Managed\UnityEngine.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEngine.CoreModule" Version="0.0.0.0" IncludeAssets="compile" >
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>C:\SPT\EscapeFromTarkov_Data\Managed\UnityEngine.CoreModule.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEngine.IMGUIModule" Version="0.0.0.0" IncludeAssets="compile">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>C:\SPT\EscapeFromTarkov_Data\Managed\UnityEngine.IMGUIModule.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEngine.TextRenderingModule" Version="0.0.0.0" IncludeAssets="compile">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>C:\SPT\EscapeFromTarkov_Data\Managed\UnityEngine.TextRenderingModule.dll</HintPath>
+    </Reference>
+    <!-- AKI SHIT -->
+    <Reference Include="Aki.Build">
+      <HintPath>C:\SPT\EscapeFromTarkov_Data\Managed\Aki.Build.dll</HintPath>
+    </Reference>
+    <Reference Include="Aki.Common" Version="1.0.0.0">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>C:\SPT\EscapeFromTarkov_Data\Managed\Aki.Common.dll</HintPath>
+    </Reference>
+    <Reference Include="Aki.Reflection" Version="1.0.0.0">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>C:\SPT\EscapeFromTarkov_Data\Managed\Aki.Reflection.dll</HintPath>
+    </Reference>
+    <!-- Mod SHIT -->
+    <Reference Include="BepInEx" HintPath="C:\SPT\BepInEx\core\BepInEx.dll" />
+    <Reference Include="0Harmony" HintPath="C:\SPT\BepInEx\core\0Harmony.dll" />
+    <!-- SYSTEM -->
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Net.Http" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Plugin.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+</Project>
