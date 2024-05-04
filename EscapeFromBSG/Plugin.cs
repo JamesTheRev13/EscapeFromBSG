@@ -16,6 +16,7 @@ namespace EscapeFromBSG
 
         public static ConfigEntry<bool> GodMode;
         public static ConfigEntry<bool> NoClip;
+        public static ConfigEntry<float> NoClipSpeed;
 
         private void Awake()
         {
@@ -41,6 +42,7 @@ namespace EscapeFromBSG
         {
             GodMode = Config.Bind(new ConfigDefinition("Cheats", "GodMode"), false, new ConfigDescription("Enable God Mode", null, new ConfigurationManagerAttributes { IsAdvanced = false, Order = 1}));
             NoClip = Config.Bind(new ConfigDefinition("Cheats", "NoClip"), false, new ConfigDescription("Enable NoClip", null, new ConfigurationManagerAttributes { IsAdvanced = false, Order = 2 }));
+            NoClipSpeed = Config.Bind(new ConfigDefinition("Cheats", "NoClipSpeed"), 10.0f, new ConfigDescription("Configure NoClip Speed", null, new ConfigurationManagerAttributes { IsAdvanced = false, Order = 3 }));
         }
     }
 }

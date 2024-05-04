@@ -13,7 +13,7 @@ namespace EscapeFromBSG.Patches
      ///           Use at your own risk         ///
     //////////////////////////////////////////////
     
-    // TODO: Plug into ConfigurationManager to enable/disable NoClip and configure speed
+    // TODO: Make collision detection configurable
     // TODO: Figure out a proper way to handle collisions - brute forcing your way through walls is not the way to go
     public class PlayerUpdateTickPatch : ModulePatch
     {
@@ -29,6 +29,14 @@ namespace EscapeFromBSG.Patches
                 return;
             }
 
+            player.MovementContext.IsGrounded = true;
+
+            var vect = new Vector3(0.0f, 0.0f, 0.0f);
+            player.MovementContext.ApplyGravity(ref vect, 0f, false);
+
+            if (!player.isActiveAndEnabled || player.IsInventoryOpened)
+                return;
+
             var camera = player.GetComponent<PlayerCameraController>().Camera.transform;
             var dir = new Vector3();
 
@@ -36,46 +44,26 @@ namespace EscapeFromBSG.Patches
             if (UnityInput.Current.GetKey(KeyCode.W))
                 dir += camera.forward;
             if (UnityInput.Current.GetKey(KeyCode.S))
-                dir += camera.forward * -1;
+                dir += -camera.forward;
             if (UnityInput.Current.GetKey(KeyCode.D))
                 dir += camera.right;
             if (UnityInput.Current.GetKey(KeyCode.A))
-                dir += camera.right * -1;
+                dir += -camera.right;
 
             // Vertical
             if (UnityInput.Current.GetKey(KeyCode.Space))
                 dir.y += camera.up.y;
             if (UnityInput.Current.GetKey(KeyCode.LeftControl))
-                dir.y += camera.up.y * -1;
+                dir.y += -camera.up.y;
 
             var prevPos = player.Transform.localPosition;
             if (prevPos.Equals(Vector3.zero))
                 return;
             
-            var newPos = prevPos + dir * (10.0f * Time.deltaTime);
+            var newPos = prevPos + dir * (Plugin.NoClipSpeed.Value * Time.deltaTime);
 
-            player.Transform.position = newPos;
+            //player.Transform.position = newPos;
             player.Transform.localPosition = newPos;
-            player.MovementContext.IsGrounded = true;
-
-            var vect = new Vector3(0.0f, 0.0f, 0.0f);
-            player.MovementContext.ApplyGravity(ref vect, 0f, false);
         }
-
-        //[PatchPostfix]
-        //private static void Postfix(Player __instance)
-        //{
-        //    var player = __instance;
-
-        //    if (player == null || !player.IsYourPlayer)
-        //    {
-        //        return;
-        //    }
-
-        //    //player.Transform.position = Plugin.PrevPos;
-        //    //player.Transform.localPosition = Plugin.PrevPos;
-
-        //    Plugin.PluginLogger.LogInfo($"Postfix Player position: {player.Transform.position}");
-        //}
     }
 }

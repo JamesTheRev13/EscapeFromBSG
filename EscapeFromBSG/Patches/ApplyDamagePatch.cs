@@ -5,7 +5,6 @@ using System.Reflection;
 namespace EscapeFromBSG.Patches
 {
     // Simple God mode
-    // TODO: Add ConfigurationManager to enable/disable God mode
     public class ApplyDamagePatch : ModulePatch
     {
         protected override MethodBase GetTargetMethod() => typeof(ActiveHealthController).GetMethod(nameof(ActiveHealthController.ApplyDamage));

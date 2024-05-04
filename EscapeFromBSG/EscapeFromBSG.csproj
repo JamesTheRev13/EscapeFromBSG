@@ -49,6 +49,14 @@
       <SpecificVersion>False</SpecificVersion>
       <HintPath>C:\SPT\EscapeFromTarkov_Data\Managed\UnityEngine.TextRenderingModule.dll</HintPath>
     </Reference>
+    <Reference Include="Comfort" Version="1.0.0.4">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>C:\SPT\EscapeFromTarkov_Data\Managed\Comfort.dll</HintPath>
+    </Reference>
+    <Reference Include="Comfort.Unity" Version="1.0.0.4">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>C:\SPT\EscapeFromTarkov_Data\Managed\Comfort.Unity.dll</HintPath>
+    </Reference>
     <!-- AKI SHIT -->
     <Reference Include="Aki.Build">
       <HintPath>C:\SPT\EscapeFromTarkov_Data\Managed\Aki.Build.dll</HintPath>
