@@ -5,6 +5,8 @@ using System.Reflection;
 namespace EscapeFromBSG.Patches
 {
     // Simple God mode
+    // TODO: Investigate weird insta kill bug (seemingly only happens if the player takes significant damage BEFORE enabling god mode)
+    // (Maybe find the actual kill logic and patch that as well as ApplyDamage)
     public class ApplyDamagePatch : ModulePatch
     {
         protected override MethodBase GetTargetMethod() => typeof(ActiveHealthController).GetMethod(nameof(ActiveHealthController.ApplyDamage));

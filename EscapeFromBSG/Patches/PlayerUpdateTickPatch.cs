@@ -15,6 +15,7 @@ namespace EscapeFromBSG.Patches
     
     // TODO: Make collision detection configurable
     // TODO: Figure out a proper way to handle collisions - brute forcing your way through walls is not the way to go
+    // TODO: Maybe figure out a way to add a timer after disabling NoClip to prevent fall damage insta-kills after disabling NoClip
     public class PlayerUpdateTickPatch : ModulePatch
     {
         protected override MethodBase GetTargetMethod() => typeof(Player).GetMethod(nameof(Player.UpdateTick));
@@ -24,11 +25,39 @@ namespace EscapeFromBSG.Patches
         {
             var player = __instance;
 
-            if (player == null || !player.IsYourPlayer || !Plugin.NoClip.Value)
+            if (player == null || !player.IsYourPlayer)
             {
                 return;
             }
 
+            if (Plugin.NoClipShortcut.Value.IsDown())
+            {
+                Plugin.NoClip.Value = !Plugin.NoClip.Value;
+            }
+
+            // NoClip ON -> Disable player fall damage to prevent collision insta-kills if GodMode is NOT enabled with NoClip enabled (NOT RECOMMENDED)
+            // NoClip OFF -> Default Fall Damage
+            player.ActiveHealthController.FallSafeHeight = Plugin.NoClip.Value ? 9999998f : 2f;
+
+            if (!Plugin.NoClip.Value)
+                return;
+
+            //player.CharacterController.attachedRigidbody.detectCollisions = false;
+            // Testing collision
+            //player.GetTriggerColliderSearcher().IsEnabled = false;
+            // OnControllerColliderHit
+
+            //var collider = player?.GetComponent<ICharacterController>() as Collider ?? null;
+
+            //collider.enabled = false;
+
+            //player.MovementContext.ObstacleCollisionFacade
+            //player.MovementContext.ObstacleCollisionFacade.Reset();
+            //player.HasBodyPartCollider
+            //player.Physical.
+            //player.UpdateTriggerColliderSearcher
+
+            // TODO: double check if this actually does anyting <.<
             player.MovementContext.IsGrounded = true;
 
             var vect = new Vector3(0.0f, 0.0f, 0.0f);
@@ -52,17 +81,18 @@ namespace EscapeFromBSG.Patches
 
             // Vertical
             if (UnityInput.Current.GetKey(KeyCode.Space))
-                dir.y += camera.up.y;
+                dir.y += 1;
             if (UnityInput.Current.GetKey(KeyCode.LeftControl))
-                dir.y += -camera.up.y;
-
+                dir.y += -1;
+            
             var prevPos = player.Transform.localPosition;
             if (prevPos.Equals(Vector3.zero))
                 return;
-            
-            var newPos = prevPos + dir * (Plugin.NoClipSpeed.Value * Time.deltaTime);
 
-            //player.Transform.position = newPos;
+            var speed = UnityInput.Current.GetKey(KeyCode.LeftShift) ? Plugin.NoClipSpeed.Value * 2f : Plugin.NoClipSpeed.Value;
+            
+            var newPos = prevPos + dir * (speed * Time.deltaTime);
+
             player.Transform.localPosition = newPos;
         }
     }

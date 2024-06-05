@@ -16,6 +16,7 @@ namespace EscapeFromBSG
 
         public static ConfigEntry<bool> GodMode;
         public static ConfigEntry<bool> NoClip;
+        public static ConfigEntry<KeyboardShortcut> NoClipShortcut;
         public static ConfigEntry<float> NoClipSpeed;
 
         private void Awake()
@@ -41,8 +42,9 @@ namespace EscapeFromBSG
         private void BindConfigs()
         {
             GodMode = Config.Bind(new ConfigDefinition("Cheats", "GodMode"), false, new ConfigDescription("Enable God Mode", null, new ConfigurationManagerAttributes { IsAdvanced = false, Order = 1}));
-            NoClip = Config.Bind(new ConfigDefinition("Cheats", "NoClip"), false, new ConfigDescription("Enable NoClip", null, new ConfigurationManagerAttributes { IsAdvanced = false, Order = 2 }));
-            NoClipSpeed = Config.Bind(new ConfigDefinition("Cheats", "NoClipSpeed"), 10.0f, new ConfigDescription("Configure NoClip Speed", null, new ConfigurationManagerAttributes { IsAdvanced = false, Order = 3 }));
+            NoClip = Config.Bind(new ConfigDefinition("Cheats", "NoClip"), false, new ConfigDescription("Enable NoClip (Recommended to be used alongside GodMode to prevent collision and/or fall damage death)", null, new ConfigurationManagerAttributes { IsAdvanced = false, Order = 2 }));
+            NoClipSpeed = Config.Bind(new ConfigDefinition("Cheats", "NoClipSpeed"), 8.0f, new ConfigDescription("Configure NoClip Speed", new AcceptableValueRange<float>(1, 500), new ConfigurationManagerAttributes { IsAdvanced = false, Order = 3 }));
+            NoClipShortcut = Config.Bind(new ConfigDefinition("Cheats", "NoClipShortcut"), new KeyboardShortcut(UnityEngine.KeyCode.Slash), new ConfigDescription("NoClip Shortcut", null, new ConfigurationManagerAttributes { IsAdvanced = false, Order = 4 }));
         }
     }
 }

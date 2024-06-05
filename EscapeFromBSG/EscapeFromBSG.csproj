@@ -41,6 +41,10 @@
       <SpecificVersion>False</SpecificVersion>
       <HintPath>C:\SPT\EscapeFromTarkov_Data\Managed\UnityEngine.CoreModule.dll</HintPath>
     </Reference>
+    <Reference Include="UnityEngine.PhysicsModule" Version="0.0.0.0" IncludeAssets="compile">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>C:\SPT\EscapeFromTarkov_Data\Managed\UnityEngine.PhysicsModule.dll</HintPath>
+    </Reference>
     <Reference Include="UnityEngine.IMGUIModule" Version="0.0.0.0" IncludeAssets="compile">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>C:\SPT\EscapeFromTarkov_Data\Managed\UnityEngine.IMGUIModule.dll</HintPath>
@@ -58,9 +62,9 @@
       <HintPath>C:\SPT\EscapeFromTarkov_Data\Managed\Comfort.Unity.dll</HintPath>
     </Reference>
     <!-- AKI SHIT -->
-    <Reference Include="Aki.Build">
+    <!--<Reference Include="Aki.Build">
       <HintPath>C:\SPT\EscapeFromTarkov_Data\Managed\Aki.Build.dll</HintPath>
-    </Reference>
+    </Reference>-->
     <Reference Include="Aki.Common" Version="1.0.0.0">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>C:\SPT\EscapeFromTarkov_Data\Managed\Aki.Common.dll</HintPath>
